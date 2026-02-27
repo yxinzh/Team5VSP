@@ -1,6 +1,4 @@
-# Team5
-
-Eyewear Demand Forecasting
+# Eyewear Demand Forecasting
 
 ## Background
 VSP Vision is a leading provider of eye care services in the U.S., sitting at the intersection of healthcare and retail. Effective supply chain management requires maintaining the right inventory levels. Too much inventory leads to unnecessary costs, while too little results in missed sales opportunities. Demand forecasting is the process of predicting future customer demand for a product or service using historical data, market trends, and other influencing factors (seasonality, promotions, or economic conditions). As an eyewear frame manufacturer,
