@@ -4,19 +4,25 @@ Eyewear Demand Forecasting
 
 ## Background
 VSP Vision is a leading provider of eye care services in the U.S., sitting at the intersection of healthcare and retail. Effective supply chain management requires maintaining the right inventory levels. Too much inventory leads to unnecessary costs, while too little results in missed sales opportunities. Demand forecasting is the process of predicting future customer demand for a product or service using historical data, market trends, and other influencing factors (seasonality, promotions, or economic conditions). As an eyewear frame manufacturer,
-VSP releases new frames to the marketplace on a periodicquality, including appropriate use of visualizations. Code should be well structured and easy to follow, with liberal use of comments.
+VSP releases new frames to the marketplace on a periodic basis, including appropriate use of visualizations. Code should be well-structured and easy to follow, with liberal use of comments.
 
 ---
+## Data Preparation
 
-## Execution Instructions & Final Findings
+1. Run **`explore.ipynb`**: this reads the demand dataset from VSP and cleans it into **`demand_monthly.csv`**
+2. Run **`tejas_feature_eda.py`**: this reads **`demand_monthly.csv`** and adds new features from Google Trends. it creates **`demand_monthly_enriched.csv`**
+3. Run **`additional_features.ipynb`**: this reads **`demand_monthly_enriched.csv`**, creates seasonality indicators, and merges style inforation from **`styles.csv`**. it creates data visualizations and **`final_demand.csv`**, which is ready for modeling.
+---
+
+## Modeling
 
 ### How to Run the Pipeline
 The codebase is structured sequentially from data engineering to final LLM augmentation. Run the scripts in this order:
-1. **`tejas_feature_eda.py`**: Merges the raw demand, style, and 6 Google Trends datasets. Generates `final_demand.csv`.
-2. **`tejas_modeling_baseline.py`**: Runs a Ridge Regression (interpretable baseline) using Walk-Forward Validation.
-3. **`tejas_modeling_champion.py`**: Runs a CatBoost model handling categorical data to discover non-linear relationships.
-4. **`tejas_modeling_advanced.py`**: Engineers Time-Series Lags (T-3, T-6), Momentum Deltas, and Sibling Cannibalization Density. Reruns CatBoost to achieve the lowest pure ML error.
-5. **`tejas_llm_augmentation.py`**: Requires a `.env` file with `ANTHROPIC_API_KEY`. It runs the Top 5 most vital frame predictions through `claude-opus-4-6` to qualitatively adjust the quantitative baseline.
+
+1. **`tejas_modeling_baseline.py`**: Runs a Ridge Regression (interpretable baseline) using Walk-Forward Validation.
+2. **`tejas_modeling_champion.py`**: Runs a CatBoost model handling categorical data to discover non-linear relationships.
+3. **`tejas_modeling_advanced.py`**: Engineers Time-Series Lags (T-3, T-6), Momentum Deltas, and Sibling Cannibalization Density. Reruns CatBoost to achieve the lowest pure ML error.
+4. **`tejas_llm_augmentation.py`**: Requires a `.env` file with `ANTHROPIC_API_KEY`. It runs the Top 5 most vital frame predictions through `claude-opus-4-6` to qualitatively adjust the quantitative baseline.
 
 ### Pipeline Performance (Mean Absolute Error)
 
