@@ -7,9 +7,10 @@ VSP releases new frames to the marketplace on a periodic basis, including approp
 ---
 ## Data Preparation
 
-1. Run **`explore.ipynb`**: this reads the demand dataset from VSP and cleans it into **`demand_monthly.csv`**
-2. Run **`tejas_feature_eda.py`**: this reads **`demand_monthly.csv`** and adds new features from Google Trends. it creates **`demand_monthly_enriched.csv`**
+1. Run **`explore.ipynb`**: this reads the demand dataset from VSP and cleans it into **`demand_monthly.csv`**. Also merges Sept 2024 products from Nike, Lacoste, and Calvin Klein into **`products.csv`**
+2. Run **`tejas_feature_eda.py`**: this reads **`demand_monthly.csv`** and adds new features from Google Trends, creating **`demand_monthly_enriched.csv`**
 3. Run **`additional_features.ipynb`**: this reads **`demand_monthly_enriched.csv`**, creates seasonality indicators, and merges style inforation from **`styles.csv`**. it creates data visualizations and **`final_demand.csv`**, which is ready for modeling.
+4. Run **`clean_092024products.ipynb`**: cleans **`products.csv`** to make values consistent with model training dataset. Creates **`final_products.csv`** to run with the champion model to get demand predictions for September 2024 products.
 ---
 
 ## Modeling
